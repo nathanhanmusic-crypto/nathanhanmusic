@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nathan Han</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+            font-weight: 300;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        aside {
+            width: 260px;
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            padding: 48px 0 48px 48px;
+            border-right: 1px solid #111111;
+            overflow-y: auto;
+        }
+
+        aside h1 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            margin-bottom: 52px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #ffffff;
+        }
+
+        aside nav {
+            margin-bottom: 60px;
+        }
+
+        aside nav ul {
+            list-style: none;
+        }
+
+        aside nav li {
+            margin-bottom: 18px;
+        }
+
+        aside nav a {
+            color: #555555;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+            display: block;
+        }
+
+        aside nav a:hover {
+            color: #ffffff;
+        }
+
+        main {
+            margin-left: 260px;
+            flex: 1;
+            padding: 56px 56px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .work-item {
+            position: relative;
+            background: #080808;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border: 1px solid #111111;
+        }
+
+        .work-item:hover {
+            transform: scale(1.01);
+            border-color: #222222;
+        }
+
+        .work-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .work-item .placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .work-item .placeholder .icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            opacity: 0.6;
+        }
+
+        .work-item .info {
+            padding: 20px 20px 24px;
+        }
+
+        .work-item .player-container {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #000000;
+            position: relative;
+        }
+
+        .work-item .player-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .work-item .spotify-player {
+            width: 100%;
+            height: 152px;
+        }
+
+        .work-item h3 {
+            font-size: 15px;
+            font-weight: 400;
+            margin-bottom: 6px;
+            letter-spacing: 0.01em;
+            color: #ffffff;
+        }
+
+        .work-item .meta {
+            font-size: 12px;
+            color: #555555;
+            letter-spacing: 0.03em;
+        }
+
+        .section-title {
+            font-size: 11px;
+            color: #444444;
+            margin-bottom: 48px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 400;
+        }
+
+        .bio-section {
+            max-width: 680px;
+            margin-bottom: 80px;
+        }
+
+        .bio-section h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 32px;
+            font-weight: 400;
+            margin-bottom: 28px;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            color: #ffffff;
+        }
+
+        .bio-section p {
+            font-size: 15px;
+            line-height: 2;
+            color: #999999;
+            margin-bottom: 24px;
+            font-weight: 300;
+        }
+
+        .discography-item {
+            display: flex;
+            gap: 24px;
+            padding: 30px 0;
+            border-bottom: 1px solid #111111;
+        }
+
+        .discography-item:first-child {
+            padding-top: 0;
+        }
+
+        .album-cover {
+            width: 140px;
+            height: 140px;
+            background: #1a1a1a;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 42px;
+        }
+
+        .album-info h3 {
+            font-size: 18px;
+            font-weight: 400;
+            margin-bottom: 8px;
+            letter-spacing: 0.01em;
+        }
+
+        .album-info .artist {
+            font-size: 13px;
+            color: #555555;
+            margin-bottom: 12px;
+            letter-spacing: 0.04em;
+        }
+
+        .album-info .role {
+            display: inline-block;
+            font-size: 11px;
+            padding: 4px 10px;
+            background: #111111;
+            color: #888888;
+            border-radius: 2px;
+            margin-bottom: 10px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .album-info .year {
+            font-size: 13px;
+            color: #444444;
+            letter-spacing: 0.04em;
+        }
+
+        @media (max-width: 1024px) {
+            aside {
+                width: 220px;
+                padding: 36px 0 36px 36px;
+            }
+
+            main {
+                margin-left: 220px;
+                padding: 40px;
+            }
+
+            .grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 16px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            aside {
+                position: relative;
+                width: 100%;
+                height: auto;
+                padding: 28px;
+                border-right: none;
+                border-bottom: 1px solid #111111;
+            }
+
+            aside h1 {
+                margin-bottom: 20px;
+            }
+
+            aside nav {
+                margin-bottom: 20px;
+            }
+
+            main {
+                margin-left: 0;
+                padding: 28px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .discography-item {
+                flex-direction: column;
+            }
+
+            .album-cover {
+                width: 100%;
+                height: 200px;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #111111;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #222222;
+        }
+
+        .go-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 44px;
+            height: 44px;
+            background: #111111;
+            border: 1px solid #222222;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s, background 0.2s;
+            z-index: 1000;
+        }
+
+        .go-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .go-to-top:hover {
+            background: #1a1a1a;
+        }
+
+        .go-to-top::before {
+            content: '↑';
+            font-size: 18px;
+            color: #888888;
+        }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 10px;
+            overflow: hidden;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            display: block;
+            transition: transform 0.4s ease;
+            border-radius: 2px;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.03);
+        }
+
+        #lightbox {
+            display: none;
+        }
+
+        #lightbox.active {
+            display: flex !important;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid #1a1a1a;
+            color: #444444;
+            padding: 7px 16px;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 11px;
+            font-family: 'DM Sans', sans-serif;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.2s;
+            font-weight: 400;
+        }
+
+        .filter-btn:hover {
+            border-color: #444444;
+            color: #ffffff;
+        }
+
+        .filter-btn.active {
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+        }
+
+        .service-category-btn {
+            background: transparent;
+            border: 1px solid #1a1a1a;
+            color: #444444;
+            padding: 7px 16px;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 11px;
+            font-family: 'DM Sans', sans-serif;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: all 0.2s;
+            font-weight: 400;
+        }
+
+        .service-category-btn:hover {
+            border-color: #444444;
+            color: #ffffff;
+        }
+
+        .service-category-btn.active {
+            background: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            .go-to-top {
+                bottom: 24px;
+                right: 24px;
+                width: 44px;
+                height: 44px;
+            }
+        }
+
+        /* Fade in 애니메이션 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.35s ease forwards;
+        }
+
+        /* 고정 헤더 */
+        #top-header {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 48px;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid #111111;
+            z-index: 2000;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+        }
+
+        #header-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        #header-menu-btn {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #888888;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: color 0.2s;
+            padding: 0;
+        }
+
+        #header-menu-btn:hover {
+            color: #ffffff;
+        }
+
+        /* 모바일 드롭다운 메뉴 */
+        #mobile-menu {
+            display: none;
+            position: fixed;
+            top: 48px;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.96);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid #111111;
+            z-index: 1999;
+            padding: 24px 32px;
+        }
+
+        #mobile-menu ul {
+            list-style: none;
+        }
+
+        #mobile-menu li {
+            margin-bottom: 20px;
+        }
+
+        #mobile-menu a {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #888888;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        #mobile-menu a:hover {
+            color: #ffffff;
+        }
+
+        @media (max-width: 768px) {
+            #top-header {
+                display: flex;
+            }
+            body {
+                padding-top: 48px;
+            }
+        }
+
+        @media (min-width: 769px) {
+            #top-header {
+                display: flex;
+            }
+            body {
+                padding-top: 48px;
+            }
+            aside {
+                top: 48px;
+                height: calc(100vh - 48px);
+            }
+        }
+    </style>
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('main > section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+                section.classList.remove('fade-in');
+            });
+            
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.style.display = 'block';
+                setTimeout(() => targetSection.classList.add('fade-in'), 10);
+            }
+            
+            const links = document.querySelectorAll('aside nav a');
+            links.forEach(link => link.style.color = '#555555');
+            
+            const activeLink = document.querySelector(`aside nav a[href="#${sectionId}"]`);
+            if (activeLink) activeLink.style.color = '#ffffff';
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        // Go to top 버튼 표시/숨기기
+        function toggleGoToTop() {
+            const goToTopBtn = document.getElementById('goToTop');
+            if (window.scrollY > 300) {
+                goToTopBtn.classList.add('visible');
+            } else {
+                goToTopBtn.classList.remove('visible');
+            }
+        }
+        
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const btn = document.getElementById('header-menu-btn');
+            if (menu.style.display === 'block') {
+                menu.style.display = 'none';
+                btn.textContent = 'Menu';
+            } else {
+                menu.style.display = 'block';
+                btn.textContent = 'Close';
+            }
+        }
+
+        function closeMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const btn = document.getElementById('header-menu-btn');
+            menu.style.display = 'none';
+            btn.textContent = 'Menu';
+        }
+
+        // Go to top 버튼 클릭시 맨 위로 스크롤
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function handleLightboxClick(e) {
+            if (e.target === document.getElementById('lightbox')) {
+                closeLightbox();
+            }
+        }
+
+        // Lightbox 기능
+        let currentPhotoIndex = 0;
+        const totalPhotos = 41;
+        const photoList = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42];
+
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            const match = src.match(/photo-(\d+)\.png/);
+            if (match) currentPhotoIndex = photoList.indexOf(parseInt(match[1]));
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function prevPhoto() {
+            currentPhotoIndex = currentPhotoIndex > 0 ? currentPhotoIndex - 1 : photoList.length - 1;
+            document.getElementById('lightbox-img').src = `images/photo-${photoList[currentPhotoIndex]}.png`;
+        }
+
+        function nextPhoto() {
+            currentPhotoIndex = currentPhotoIndex < photoList.length - 1 ? currentPhotoIndex + 1 : 0;
+            document.getElementById('lightbox-img').src = `images/photo-${photoList[currentPhotoIndex]}.png`;
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prevPhoto();
+            if (e.key === 'ArrowRight') nextPhoto();
+        });
+
+        // Work 필터 기능
+        function filterWorks(role) {
+            const items = document.querySelectorAll('.work-item');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            // 모든 버튼의 active 클래스 제거
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // 클릭된 버튼에 active 클래스 추가
+            document.querySelector(`[data-filter="${role}"]`).classList.add('active');
+            
+            // 작품 필터링
+            items.forEach(item => {
+                if (role === 'all') {
+                    item.style.display = 'block';
+                } else {
+                    const roles = item.getAttribute('data-roles');
+                    if (roles && roles.includes(role)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                }
+            });
+        }
+        
+        // Services 카테고리 전환 기능
+        function showServiceCategory(category) {
+            // 모든 서비스 컨텐츠 숨기기
+            document.querySelectorAll('.service-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            // 모든 버튼의 active 클래스 제거
+            document.querySelectorAll('.service-category-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // 선택된 카테고리 표시
+            document.getElementById(`${category}-services`).style.display = 'block';
+            
+            // 클릭된 버튼에 active 클래스 추가
+            document.querySelector(`[data-category="${category}"]`).classList.add('active');
+        }
+        
+        // 페이지 로드시 Home 섹션만 표시
+        window.addEventListener('DOMContentLoaded', () => {
+            showSection('home');
+        });
+        
+        // 스크롤 이벤트 리스너
+        window.addEventListener('scroll', toggleGoToTop);
+    </script>
+</head>
+<body>
+    <header id="top-header">
+        <span id="header-title" onclick="showSection('home'); return false;">Nathan Han</span>
+        <button id="header-menu-btn" onclick="toggleMobileMenu()">Menu</button>
+    </header>
+
+    <nav id="mobile-menu">
+        <ul>
+            <li><a href="#home" onclick="showSection('home'); closeMobileMenu(); return false;">Home</a></li>
+            <li><a href="#work" onclick="showSection('work'); closeMobileMenu(); return false;">Work</a></li>
+            <li><a href="#services" onclick="showSection('services'); closeMobileMenu(); return false;">Services</a></li>
+            <li><a href="#gallery" onclick="showSection('gallery'); closeMobileMenu(); return false;">Gallery</a></li>
+            <li><a href="#cv" onclick="showSection('cv'); closeMobileMenu(); return false;">CV</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <aside>
+            
+            <nav>
+                <ul>
+                    <li><a href="#home" onclick="showSection('home'); return false;">Home</a></li>
+                    <li><a href="#work" onclick="showSection('work'); return false;">Work</a></li>
+                    <li><a href="#services" onclick="showSection('services'); return false;">Services</a></li>
+                    <li><a href="#gallery" onclick="showSection('gallery'); return false;">Gallery</a></li>
+                    <li><a href="#cv" onclick="showSection('cv'); return false;">CV</a></li>
+                </ul>
+            </nav>
+
+            <div style="margin-top: 40px; padding: 0;">
+                <a href="mailto:nathanhanmusic@gmail.com" style="display: block; font-size: 11px; color: #333333; text-decoration: none; letter-spacing: 0.06em; margin-bottom: 24px; transition: color 0.2s;" onmouseover="this.style.color='#888888'" onmouseout="this.style.color='#333333'">nathanhanmusic@gmail.com</a>
+                <div style="display: flex; gap: 16px; justify-content: flex-start;">
+                    <a href="https://www.linkedin.com/in/nathan-han-391ba8231/" target="_blank" style="color: #888888; text-decoration: none; font-size: 20px; transition: color 0.2s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#888888'">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    <a href="https://www.youtube.com/@nathanhan1990" target="_blank" style="color: #888888; text-decoration: none; font-size: 20px; transition: color 0.2s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#888888'">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
+                    <a href="https://instagram.com/nathan_artkive" target="_blank" style="color: #888888; text-decoration: none; font-size: 20px; transition: color 0.2s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#888888'">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </aside>
+
+        <main>
+            <section id="home" class="bio-section">
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; margin-bottom: 96px; min-height: calc(100vh - 96px);">
+                    <div style="padding-top: 8px;">
+                        <div class="section-title">About</div>
+                        <h2 style="font-family: 'DM Serif Display', serif; font-size: 36px; font-weight: 400; line-height: 1.25; margin-bottom: 40px; letter-spacing: -0.01em;">Music Producer<br>Songwriter<br>Keyboardist & Bassist<br>Educator</h2>
+                        <p style="font-size: 11px; color: #444444; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 16px;">NYC · DC · Seoul</p>
+                        <p style="font-size: 11px; color: #333333; letter-spacing: 0.1em; text-transform: uppercase;">40+ K-pop Albums · Berklee MA · 2× Grammy Collab</p>
+                    </div>
+                    <div style="overflow: hidden; border-radius: 2px; height: calc(100vh - 96px); max-height: 720px;">
+                        <img src="images/profile.jpg" alt="Nathan Han" style="width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: grayscale(10%);">
+                    </div>
+                </div>
+
+                <div style="max-width: 680px; margin-bottom: 72px;">
+                    <p>Nathan Han is a music producer, songwriter, keyboardist, and bassist based in New York, Washington DC, and Seoul.</p>
+
+                    <p>Born and raised in Seoul, he studied jazz trombone and composition at Seoul Institute of the Arts before moving to the United States in 2021. He completed his MA in Songwriting and Production at Berklee College of Music NYC in 2025.</p>
+
+                    <p>As someone trained in live instruments, he draws inspiration from the emotional impact of live performance. While producing all instruments through MIDI, he focuses on the interplay between drums and bass, prioritizing groove. He meticulously adjusts the dynamics and velocity of drum and bass programming to reflect the perspective and sensibility of a performer.</p>
+
+                    <p>Currently, he works as a K-pop producer for Clef Company and KSS Music, handling everything from songwriting and arrangement to vocal direction and final mixing. Understanding how an artist's unique identity shapes their music, he strives to bring out each artist's authentic voice while maintaining a balance with commercial appeal.</p>
+
+                    <p>He collaborates with jazz drummer Jud Kim (Berklee College of Music, New England Conservatory) as Pepe, pursuing more musically experimental challenges than commercial work. They have released Zigzag and All About Me, both featured on Uniqlo and H&M store playlists and actively played to this day.</p>
+
+                    <p>He produced Jud Kim's EP GIFT at Powerstation in New York, collaborating with two-time Grammy-winning producer Josh Giunta. He is currently engaged in active production and recording work with artists from around the world, including Adai Song, Hannah Berry, and Jeremy Gay.</p>
+
+                    <p>As an educator, he does not adhere to traditional methods. Valuing the sensory aspects of music—whether it feels exciting or fun—he promotes music-making through enjoyment, allowing practical skills to be absorbed naturally and musically.</p>
+                </div>
+
+                <div style="max-width: 680px; padding-top: 48px; border-top: 1px solid #111111; margin-bottom: 72px;">
+                    <p style="font-size: 11px; color: #444444; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 32px;">한국어</p>
+                    <p>네이슨 한은 뉴욕과 워싱턴 DC, 그리고 서울을 기반으로 활동하는 음악 프로듀서이자 작곡가, 키보디스트, 베이시스트입니다.</p>
+                    <p>서울에서 태어나 서울예술대학교 실용음악과에서 재즈 트롬본과 작곡을 공부한 후 2021년 미국으로 건너왔습니다. Berklee College of Music NYC에서 Songwriting and Production 전공으로 2025년 석사 과정을 마쳤습니다.</p>
+                    <p>실제 악기를 전공한 사람으로서, 그는 라이브가 주는 감동을 모티브로 삼아 작업합니다. 모든 악기를 미디로 구현하되, 드럼과 베이스의 상호 작용을 중심에 두고 Groove를 신경 씁니다. 실제 연주하듯 드럼과 베이스 프로그래밍의 다이나믹과 벨로시티를 디테일하게 조절하며, 연주자로서의 시야와 감각을 곡에 드러내려 노력합니다.</p>
+                    <p>현재 Clef Company와 KSS Music에서 K-pop 프로듀서로 일하며, 작곡과 편곡부터 보컬 디렉팅, 최종 믹싱까지 전 과정을 담당합니다. 아티스트의 색이 음악에 끼치는 영향을 이해하기에, 매번 아티스트 고유의 색을 이끌어내면서도 대중성과의 균형을 잃지 않으려 노력합니다.</p>
+                    <p>재즈 드러머 Jud Kim(Berklee College of Music, New England Conservatory)과 함께 Pepe로 활동하며, 상업 작업보다 조금 더 음악적이고 실험적인 도전을 이어가고 있습니다. Zigzag, All About Me 두 곡을 발매했으며, Uniqlo와 H&M 등 매장 플레이리스트에 소개되어 현재까지 활발하게 플레이되고 있습니다.</p>
+                    <p>뉴욕 Powerstation에서 Jud Kim의 EP GIFT를 프로듀싱하며 2회 그래미 수상 프로듀서 Josh Giunta와 협업했습니다. 현재는 Adai Song, Hannah Berry, Jeremy Gay 등 세계 각지 아티스트들과 활발한 프로듀싱 및 레코딩 활동을 이어가고 있습니다.</p>
+                    <p>교육자로서는 전통적인 방식을 고집하지 않습니다. 음악을 연습하거나 곡을 만들 때 '충분히 신나는가', '재미있는가' 등 감각적인 느낌을 중요하게 생각하기에, 즐기면서 하는 음악을 지향하며 그 과정에서 실용적인 스킬들이 자연스레 음악적으로 입력되도록 강의합니다.</p>
+                </div>
+
+                <div style="max-width: 680px; padding-top: 48px; border-top: 1px solid #111111; margin-bottom: 72px;">
+                    <p style="font-size: 11px; color: #444444; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 24px;">Contact</p>
+                    <p style="font-size: 14px; color: #888888; margin-bottom: 8px;"><a href="mailto:nathanhanmusic@gmail.com" style="color: #cccccc; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#cccccc'">nathanhanmusic@gmail.com</a></p>
+                    <p style="font-size: 14px; color: #888888; margin-bottom: 8px;"><a href="tel:+12404401122" style="color: #cccccc; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#cccccc'">+1 240 440 1122</a></p>
+                    <p style="font-size: 14px; color: #888888;"><a href="https://instagram.com/nathan_artkive" target="_blank" style="color: #cccccc; text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='#ffffff'" onmouseout="this.style.color='#cccccc'">@nathan_artkive</a></p>
+                </div>
+
+                <div style="max-width: 680px;">
+                    <iframe style="border-radius:2px" src="https://open.spotify.com/embed/album/6CQxVbthJhBpKobnEyiHMV?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+
+                <div style="margin-top: 80px; padding-top: 32px; border-top: 1px solid #111111;">
+                    <p style="font-size: 11px; color: #333333; letter-spacing: 0.1em;">©2026 Nathan Han.</p>
+                </div>
+            </section>
+
+            <section id="work">
+                <div class="section-title">Selected Works</div>
+
+                <div style="margin: 0 0 48px 0; display: flex; gap: 12px; flex-wrap: wrap;">
+                    <button onclick="filterWorks('all')" class="filter-btn active" data-filter="all">All</button>
+                    <button onclick="filterWorks('songwriter')" class="filter-btn" data-filter="songwriter">Songwriter</button>
+                    <button onclick="filterWorks('producer')" class="filter-btn" data-filter="producer">Producer</button>
+                    <button onclick="filterWorks('keyboardist')" class="filter-btn" data-filter="keyboardist">Keyboardist</button>
+                    <button onclick="filterWorks('bassist')" class="filter-btn" data-filter="bassist">Bassist</button>
+                </div>
+
+                <div class="grid">
+                    <div class="work-item" data-roles="songwriter producer keyboardist bassist drums-programming mixing-engineer mastering-engineer">
+                        <div style="aspect-ratio: 1/1; overflow: hidden; background: #111111; position: relative;">
+                            <iframe src="https://open.spotify.com/embed/album/6CQxVbthJhBpKobnEyiHMV?utm_source=generator&theme=0" width="100%" height="100%" style="border:none; position:absolute; top:0; left:0; pointer-events:none;" loading="lazy"></iframe>
+                        </div>
+                        <div class="info">
+                            <h3>The Cardboard</h3>
+                            <div class="meta">Nathan Han · EP · 2025</div>
+                            <div class="meta" style="margin-top: 6px; font-size: 11px; letter-spacing: 0.06em;">Songwriter · Producer · Keyboardist · Bassist · Mixing · Mastering</div>
+                        </div>
+                        <div style="padding: 0 20px 20px;">
+                            <iframe style="border-radius:2px" src="https://open.spotify.com/embed/album/6CQxVbthJhBpKobnEyiHMV?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        </div>
+                    </div>
+
+                    <div class="work-item" data-roles="producer editor">
+                        <div style="aspect-ratio: 1/1; overflow: hidden; background: #111111; position: relative;">
+                            <iframe src="https://open.spotify.com/embed/album/3J2fd97SVgPubmVduk2jfv?utm_source=generator&theme=0" width="100%" height="100%" style="border:none; position:absolute; top:0; left:0; pointer-events:none;" loading="lazy"></iframe>
+                        </div>
+                        <div class="info">
+                            <h3>GIFT</h3>
+                            <div class="meta">Jud Kim · EP · 2025</div>
+                            <div class="meta" style="margin-top: 6px; font-size: 11px; letter-spacing: 0.06em;">Producer · Editor</div>
+                        </div>
+                        <div style="padding: 0 20px 20px;">
+                            <iframe style="border-radius:2px" src="https://open.spotify.com/embed/album/3J2fd97SVgPubmVduk2jfv?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        </div>
+                    </div>
+
+                    <div class="work-item" data-roles="keyboardist bassist">
+                        <div style="aspect-ratio: 1/1; overflow: hidden; background: #111111; position: relative;">
+                            <iframe src="https://open.spotify.com/embed/album/7cGeoHNAuQjOGDY3eBnbgW?utm_source=generator&theme=0" width="100%" height="100%" style="border:none; position:absolute; top:0; left:0; pointer-events:none;" loading="lazy"></iframe>
+                        </div>
+                        <div class="info">
+                            <h3>Adai Song</h3>
+                            <div class="meta">Adai Song · Album · 2024</div>
+                            <div class="meta" style="margin-top: 6px; font-size: 11px; letter-spacing: 0.06em;">Keyboardist · Bassist (1st track)</div>
+                        </div>
+                        <div style="padding: 0 20px 20px;">
+                            <iframe style="border-radius:2px" src="https://open.spotify.com/embed/album/7cGeoHNAuQjOGDY3eBnbgW?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        </div>
+                    </div>
+
+                    <div class="work-item" data-roles="songwriter keyboardist bassist">
+                        <div style="aspect-ratio: 1/1; overflow: hidden; background: #111111; position: relative;">
+                            <iframe src="https://open.spotify.com/embed/track/0pbpZ9BrNUSbvjUQ2CxBEp?utm_source=generator&theme=0" width="100%" height="100%" style="border:none; position:absolute; top:0; left:0; pointer-events:none;" loading="lazy"></iframe>
+                        </div>
+                        <div class="info">
+                            <h3>lifelong</h3>
+                            <div class="meta">Keris Choi · 2024</div>
+                            <div class="meta" style="margin-top: 6px; font-size: 11px; letter-spacing: 0.06em;">Songwriter · Keyboardist · Bassist</div>
+                        </div>
+                        <div style="padding: 0 20px 20px;">
+                            <iframe style="border-radius:2px" src="https://open.spotify.com/embed/track/0pbpZ9BrNUSbvjUQ2CxBEp?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 80px; max-width: 800px;">
+                    <div class="section-title">All Works</div>
+                    <iframe style="border-radius:2px" src="https://open.spotify.com/embed/playlist/16E8Jz3mdN03rhoy503aOj?utm_source=generator&theme=0" width="100%" height="800" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+            </section>
+
+            <section id="services" style="margin-top: 0;">
+                <div class="section-title">Services</div>
+
+                <div style="margin: 30px 0 40px 0; display: flex; gap: 12px; flex-wrap: wrap;">
+                    <button onclick="showServiceCategory('production')" class="service-category-btn active" data-category="production">Production</button>
+                    <button onclick="showServiceCategory('education')" class="service-category-btn" data-category="education">Education</button>
+                    <button onclick="showServiceCategory('testimonials')" class="service-category-btn" data-category="testimonials">Testimonials</button>
+                </div>
+
+                <div id="production-services" class="service-content">
+                    <h3 style="font-size: 11px; font-weight: 400; margin-bottom: 28px; text-transform: uppercase; letter-spacing: 0.2em; color: #444444;">Production Services</h3>
+                    <div style="display: grid; gap: 20px; max-width: 720px;">
+                        <div style="padding: 20px; background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a;">
+                            <h4 style="font-size: 16px; color: #ffffff; margin-bottom: 8px;">Songwriting</h4>
+                            <p style="font-size: 14px; color: #888888; line-height: 1.6;">Contemporary songwriting with modern creative workflows and cutting-edge production techniques.</p>
+                        </div>
+                        <div style="padding: 20px; background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a;">
+                            <h4 style="font-size: 16px; color: #ffffff; margin-bottom: 8px;">Producing</h4>
+                            <p style="font-size: 14px; color: #888888; line-height: 1.6;">Full music production from concept to final master, specializing in K-pop, R&B, and contemporary styles.</p>
+                        </div>
+                        <div style="padding: 20px; background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a;">
+                            <h4 style="font-size: 16px; color: #ffffff; margin-bottom: 8px;">Arranging</h4>
+                            <p style="font-size: 14px; color: #888888; line-height: 1.6;">Professional arrangement services with focus on groove, rhythm section interplay, and modern production aesthetics.</p>
+                        </div>
+                        <div style="padding: 20px; background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a;">
+                            <h4 style="font-size: 16px; color: #ffffff; margin-bottom: 8px;">Mixing</h4>
+                            <p style="font-size: 14px; color: #888888; line-height: 1.6;">Professional mixing with attention to detail, dynamics, and commercial polish.</p>
+                        </div>
+                        <div style="padding: 20px; background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a;">
+                            <h4 style="font-size: 16px; color: #ffffff; margin-bottom: 8px;">Mastering</h4>
+                            <p style="font-size: 14px; color: #888888; line-height: 1.6;">Final mastering for streaming platforms and digital distribution.</p>
+                        </div>
+                        <div style="padding: 20px; background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a;">
+                            <h4 style="font-size: 16px; color: #ffffff; margin-bottom: 8px;">Keyboard Recording</h4>
+                            <p style="font-size: 14px; color: #888888; line-height: 1.6;">Professional keyboard and piano recording sessions with jazz-trained musicianship.</p>
+                        </div>
+                        <div style="padding: 20px; background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a;">
+                            <h4 style="font-size: 16px; color: #ffffff; margin-bottom: 8px;">Electric Bass / Synth Bass Recording</h4>
+                            <p style="font-size: 14px; color: #888888; line-height: 1.6;">Bass guitar and synth bass recording with focus on groove and pocket.</p>
+                        </div>
+                    </div>
+                    <div style="margin-top: 40px; padding: 20px; background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a; max-width: 720px;">
+                        <p style="font-size: 14px; color: #cccccc; line-height: 1.6;">For rates and availability, please contact:</p>
+                        <p style="margin-top: 12px;"><a href="mailto:nathanhanmusic@gmail.com" style="color: #ffffff; text-decoration: none; border-bottom: 1px solid #666;">nathanhanmusic@gmail.com</a></p>
+                    </div>
+
+                    <div style="margin-top: 60px; padding-top: 40px; border-top: 1px solid #1a1a1a;">
+                        <h3 style="font-size: 11px; font-weight: 400; margin-bottom: 28px; text-transform: uppercase; letter-spacing: 0.2em; color: #444444;">Tools & Equipment</h3>
+                        
+                        <div style="margin-bottom: 40px; max-width: 720px;">
+                            <h4 style="font-size: 16px; color: #ffffff; margin-bottom: 16px;">DAW</h4>
+                            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                                <span style="padding: 8px 16px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px; font-size: 14px; color: #cccccc;">Ableton Live (Latest)</span>
+                                <span style="padding: 8px 16px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px; font-size: 14px; color: #cccccc;">Logic Pro (Latest)</span>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 40px; max-width: 720px;">
+                            <h4 style="font-size: 16px; color: #ffffff; margin-bottom: 16px;">Virtual Instruments & Synths</h4>
+                            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                                <span style="padding: 8px 16px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px; font-size: 14px; color: #cccccc;">Spectrasonics</span>
+                                <span style="padding: 8px 16px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px; font-size: 14px; color: #cccccc;">Native Instruments</span>
+                                <span style="padding: 8px 16px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px; font-size: 14px; color: #cccccc;">Xfer Records</span>
+                                <span style="padding: 8px 16px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px; font-size: 14px; color: #cccccc;">Arturia</span>
+                                <span style="padding: 8px 16px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px; font-size: 14px; color: #cccccc;">Spitfire Audio</span>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 40px; max-width: 720px;">
+                            <h4 style="font-size: 16px; color: #ffffff; margin-bottom: 16px;">Mixing & Processing</h4>
+                            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                                <span style="padding: 8px 16px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px; font-size: 14px; color: #cccccc;">FabFilter</span>
+                                <span style="padding: 8px 16px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px; font-size: 14px; color: #cccccc;">Waves</span>
+                                <span style="padding: 8px 16px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px; font-size: 14px; color: #cccccc;">iZotope</span>
+                                <span style="padding: 8px 16px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px; font-size: 14px; color: #cccccc;">Soundtoys</span>
+                                <span style="padding: 8px 16px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px; font-size: 14px; color: #cccccc;">Universal Audio</span>
+                                <span style="padding: 8px 16px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px; font-size: 14px; color: #cccccc;">Plugin Alliance</span>
+                                <span style="padding: 8px 16px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px; font-size: 14px; color: #cccccc;">Valhalla DSP</span>
+                                <span style="padding: 8px 16px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px; font-size: 14px; color: #cccccc;">Celemony</span>
+                                <span style="padding: 8px 16px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px; font-size: 14px; color: #cccccc;">Antares</span>
+                                <span style="padding: 8px 16px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px; font-size: 14px; color: #cccccc;">Acustica Audio</span>
+                                <span style="padding: 8px 16px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px; font-size: 14px; color: #cccccc;">Soundtheory</span>
+                                <span style="padding: 8px 16px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px; font-size: 14px; color: #cccccc;">Solid State Logic</span>
+                                <span style="padding: 8px 16px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px; font-size: 14px; color: #cccccc;">Oeksound</span>
+                                <span style="padding: 8px 16px; background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 4px; font-size: 14px; color: #cccccc;">Cradle</span>
+                            </div>
+                        </div>
+
+                        <div style="padding: 20px; background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a; max-width: 720px;">
+                            <p style="font-size: 14px; color: #888888; line-height: 1.6;">Full professional production setup with industry-standard tools and plugins for any genre or style.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="education-services" class="service-content" style="display: none;">
+                    <h3 style="font-size: 11px; font-weight: 400; margin-bottom: 28px; text-transform: uppercase; letter-spacing: 0.2em; color: #444444;">Education</h3>
+                    
+                    <div style="margin-bottom: 40px; padding: 20px; background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a; max-width: 720px;">
+                        <h4 style="font-size: 16px; color: #ffffff; margin-bottom: 12px;">Piano Lesson Application</h4>
+                        <p style="font-size: 14px; color: #888888; line-height: 1.6; margin-bottom: 16px;">Interested in piano lessons? Fill out the application form to get started.</p>
+                        <a href="https://docs.google.com/forms/d/1SlBRVeKZIO4nHmP3T2I7fWi6Nc4-hCYSRcLhvntp_Ck/edit" target="_blank" style="display: inline-block; padding: 12px 24px; background: #ffffff; color: #000000; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: 500; transition: background 0.2s;" onmouseover="this.style.background='#cccccc'" onmouseout="this.style.background='#ffffff'">Apply for Piano Lessons</a>
+                    </div>
+
+                    <div style="display: grid; gap: 20px; max-width: 720px;">
+                        <div style="padding: 20px; background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a;">
+                            <h4 style="font-size: 16px; color: #ffffff; margin-bottom: 8px;">Jazz Piano Lesson</h4>
+                            <p style="font-size: 14px; color: #888888; line-height: 1.6; margin-bottom: 12px;">Comprehensive jazz piano instruction focusing on:</p>
+                            <ul style="font-size: 14px; color: #888888; line-height: 1.8; margin-left: 20px;">
+                                <li>Voicings and harmony</li>
+                                <li>Improvisation techniques</li>
+                                <li>Rhythm and groove</li>
+                                <li>Jazz standards repertoire</li>
+                                <li>Ensemble playing</li>
+                            </ul>
+                        </div>
+                        <div style="padding: 20px; background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a;">
+                            <h4 style="font-size: 16px; color: #ffffff; margin-bottom: 8px;">CCM Piano Lesson</h4>
+                            <p style="font-size: 14px; color: #888888; line-height: 1.6; margin-bottom: 12px;">Contemporary Christian Music piano instruction covering:</p>
+                            <ul style="font-size: 14px; color: #888888; line-height: 1.8; margin-left: 20px;">
+                                <li>Worship keyboard techniques</li>
+                                <li>Contemporary chord voicings</li>
+                                <li>Pad and atmosphere creation</li>
+                                <li>Band dynamics and interaction</li>
+                                <li>Song arrangement for worship settings</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 40px; padding: 20px; background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a; max-width: 720px;">
+                        <p style="font-size: 14px; color: #cccccc; line-height: 1.6;">Available for in-person lessons in the DMV area (DC/MD/VA) and online lessons worldwide.</p>
+                        <p style="margin-top: 12px;"><a href="mailto:nathanhanmusic@gmail.com" style="color: #ffffff; text-decoration: none; border-bottom: 1px solid #666;">nathanhanmusic@gmail.com</a></p>
+                    </div>
+                </div>
+
+                <div id="testimonials-services" class="service-content" style="display: none;">
+                    <h3 style="font-size: 11px; font-weight: 400; margin-bottom: 28px; text-transform: uppercase; letter-spacing: 0.2em; color: #444444;">Testimonials</h3>
+                    
+                    <div style="margin-bottom: 40px; padding: 20px; background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a; max-width: 720px;">
+                        <h4 style="font-size: 16px; color: #ffffff; margin-bottom: 12px;">Share Your Experience</h4>
+                        <p style="font-size: 14px; color: #888888; line-height: 1.6; margin-bottom: 16px;">Worked with Nathan? Share your experience and feedback.</p>
+                        <a href="https://forms.gle/me318iYbyryCtHmF6" target="_blank" style="display: inline-block; padding: 12px 24px; background: #ffffff; color: #000000; text-decoration: none; border-radius: 4px; font-size: 14px; font-weight: 500; transition: background 0.2s;" onmouseover="this.style.background='#cccccc'" onmouseout="this.style.background='#ffffff'">Submit a Review</a>
+                    </div>
+
+                    <div style="max-width: 720px;">
+                        <h4 style="font-size: 16px; color: #ffffff; margin-bottom: 24px;">Client Reviews</h4>
+                        
+                        <div style="padding: 24px; background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a; margin-bottom: 20px;">
+                            <div style="margin-bottom: 12px; color: #ffd700; font-size: 16px;">★★★★★</div>
+                            <p style="font-size: 15px; color: #cccccc; line-height: 1.8; margin-bottom: 16px;">"I came from a classical piano background and wanted to learn contemporary worship keyboard. After nearly two years of lessons with Nathan, I've seen tremendous growth. His teaching style perfectly balances theory and practical application, giving me both the foundation and real-world tips I need. His structured approach has helped me improve consistently in both the short and long term. Highly recommend for anyone looking to transition into worship music!"</p>
+                            <p style="font-size: 15px; color: #cccccc; line-height: 1.8; margin-bottom: 16px;">"클래식 피아노만 치다가 교회 반주를 배우고 싶어서 네이슨 선생님께 레슨을 시작했습니다. 벌써 2년째 배우고 있는데, 이론 설명과 실전 팁이 균형 잡혀 있어서 체계적으로 실력이 늘고 있습니다. 단기적으로도 장기적으로도 꾸준히 발전하는 게 느껴져서 정말 만족스럽습니다. 워십 피아노를 배우고 싶은 분들께 강력 추천합니다!"</p>
+                            <p style="font-size: 14px; color: #888888;">Piano Student, CCM Lesson</p>
+                        </div>
+                        
+                        <div style="padding: 24px; background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a; margin-bottom: 20px;">
+                            <div style="margin-bottom: 12px; color: #ffd700; font-size: 16px;">★★★★★</div>
+                            <p style="font-size: 15px; color: #cccccc; line-height: 1.8; margin-bottom: 16px;">"I originally asked Nathan for just piano on my track, but he went above and beyond. When I opened the session, I was blown away. The entire instrumental was beautifully crafted. His musicality and attention to detail exceeded my expectations. Highly recommend working with him!"</p>
+                            <p style="font-size: 14px; color: #888888;">Passion, Songwriter & Producer</p>
+                        </div>
+
+                        <div style="padding: 24px; background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a; margin-bottom: 20px;">
+                            <div style="margin-bottom: 12px; color: #ffd700; font-size: 16px;">★★★★★</div>
+                            <p style="font-size: 15px; color: #cccccc; line-height: 1.8; margin-bottom: 16px;">"Nathan's bass playing brought exactly what my track needed: groove, feel, and that live energy you can't get from programming. His jazz background really shows in the way he approaches the instrument. Professional and easy to work with."</p>
+                            <p style="font-size: 14px; color: #888888;">Koumi, Songwriter & Producer</p>
+                        </div>
+
+                        <div style="padding: 20px; background: #0a0a0a; border-radius: 8px; border: 1px solid #1a1a1a;">
+                            <p style="font-size: 14px; color: #888888; line-height: 1.6; font-style: italic;">Share your experience working with Nathan!</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="gallery" style="margin-top: 0;">
+                <div class="section-title">Gallery</div>
+                <p style="font-size: 13px; color: #444444; margin-bottom: 48px; letter-spacing: 0.03em;">Live performances, teaching sessions, and studio moments.</p>
+
+                <div style="columns: 4; column-gap: 12px; margin-top: 40px;" id="gallery-grid">
+                    <div class="gallery-item"><img src="images/photo-1.png" alt="Photo 1" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-2.png" alt="Photo 2" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-3.png" alt="Photo 3" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-4.png" alt="Photo 4" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-5.png" alt="Photo 5" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-6.png" alt="Photo 6" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-7.png" alt="Photo 7" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-8.png" alt="Photo 8" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-9.png" alt="Photo 9" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-10.png" alt="Photo 10" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-11.png" alt="Photo 11" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-12.png" alt="Photo 12" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-13.png" alt="Photo 13" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-14.png" alt="Photo 14" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-15.png" alt="Photo 15" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-16.png" alt="Photo 16" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-17.png" alt="Photo 17" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-18.png" alt="Photo 18" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-19.png" alt="Photo 19" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-21.png" alt="Photo 21" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-22.png" alt="Photo 22" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-23.png" alt="Photo 23" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-24.png" alt="Photo 24" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-25.png" alt="Photo 25" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-26.png" alt="Photo 26" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-27.png" alt="Photo 27" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-28.png" alt="Photo 28" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-29.png" alt="Photo 29" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-30.png" alt="Photo 30" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-31.png" alt="Photo 31" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-32.png" alt="Photo 32" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-33.png" alt="Photo 33" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-34.png" alt="Photo 34" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-35.png" alt="Photo 35" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-36.png" alt="Photo 36" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-37.png" alt="Photo 37" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-38.png" alt="Photo 38" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-39.png" alt="Photo 39" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-40.png" alt="Photo 40" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-41.png" alt="Photo 41" onclick="openLightbox(this.src)"></div>
+                    <div class="gallery-item"><img src="images/photo-42.png" alt="Photo 42" onclick="openLightbox(this.src)"></div>
+                </div>
+            </section>
+
+            <div id="lightbox" onclick="handleLightboxClick(event)" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 9999; align-items: center; justify-content: center; cursor: pointer;">
+                <img id="lightbox-img" src="" onclick="event.stopPropagation()" style="width: 95vw; height: 95vh; object-fit: contain; border-radius: 4px; cursor: default;">
+                <div onclick="closeLightbox()" style="position: absolute; top: 24px; right: 32px; color: #ffffff; font-size: 32px; cursor: pointer; line-height: 1; z-index: 10000;">×</div>
+                <div onclick="event.stopPropagation(); prevPhoto()" style="position: absolute; left: 24px; top: 50%; transform: translateY(-50%); color: #ffffff; font-size: 48px; cursor: pointer; user-select: none; padding: 16px; opacity: 0.7; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">&#8249;</div>
+                <div onclick="event.stopPropagation(); nextPhoto()" style="position: absolute; right: 24px; top: 50%; transform: translateY(-50%); color: #ffffff; font-size: 48px; cursor: pointer; user-select: none; padding: 16px; opacity: 0.7; transition: opacity 0.2s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">&#8250;</div>
+            </div>
+
+            <section id="cv" style="margin-top: 0;">
+                <div class="section-title">CV</div>
+
+                <div style="max-width: 680px; margin-bottom: 64px; padding-bottom: 48px; border-bottom: 1px solid #111111;">
+                    <p style="font-family: 'DM Serif Display', serif; font-size: 26px; font-weight: 400; line-height: 1.4; color: #ffffff; letter-spacing: -0.01em;">40+ K-pop albums. Berklee MA.<br>NYC · DC · Seoul.</p>
+                    <div style="margin-top: 32px;">
+                        <a href="files/cv-en.pdf" download style="display: inline-block; padding: 10px 20px; border: 1px solid #333333; color: #888888; text-decoration: none; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; transition: all 0.2s;" onmouseover="this.style.borderColor='#ffffff'; this.style.color='#ffffff'" onmouseout="this.style.borderColor='#333333'; this.style.color='#888888'">Download CV</a>
+                    </div>
+                </div>
+
+                <div class="section-title">EN</div>
+                
+                <div style="margin-top: 30px; max-width: 720px;">
+                    <h3 style="font-size: 11px; font-weight: 400; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.2em; color: #444444;">Education</h3>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2024-2025</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">Berklee College of Music, NYC  <span style="color: #888888;">MA in Songwriting and Production</span></p>
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2018-2019</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">Seoul Jazz Academy  <span style="color: #888888;">BA in Applied Music, Jazz Piano</span></p>
+                    </div>
+                    <div style="margin-bottom: 40px;">
+                        <span style="font-size: 14px; color: #888888;">2014-2018</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">Seoul Institute of the Arts  <span style="color: #888888;">Associate Degree in Applied Music, Jazz Trombone</span></p>
+                    </div>
+                    
+                    <h3 style="font-size: 11px; font-weight: 400; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.2em; color: #444444;">Work Experience</h3>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2026-Present</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">Clef Company  <span style="color: #888888;">Music Producer, Songwriter</span></p>
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2025-Present</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">KSS Music  <span style="color: #888888;">Music Producer, Songwriter</span></p>
+                    </div>
+                    <div style="margin-bottom: 40px;">
+                        <span style="font-size: 14px; color: #888888;">2017-Present</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">Freelance  <span style="color: #888888;">Produced over 40 K-pop albums and commercial music</span></p>
+                    </div>
+                    
+                    <h3 style="font-size: 11px; font-weight: 400; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.2em; color: #444444;">Teaching Experience</h3>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2024-2025</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">Sejong Institute of Music and Arts, Seoul  <span style="color: #888888;">Music Production Instructor</span></p>
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2024-2025</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">Manhattan Korean School, New York  <span style="color: #888888;">Music Instructor</span></p>
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2023-Present</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">ODPC Band Academy, Herndon, VA  <span style="color: #888888;">Keyboard Instructor</span></p>
+                    </div>
+                    <div style="margin-bottom: 40px;">
+                        <span style="font-size: 14px; color: #888888;">2022-Present</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">Washington Institute of Music and Arts, Herndon, VA  <span style="color: #888888;">Keyboard, Bass Instructor</span></p>
+                    </div>
+                    
+                    <h3 style="font-size: 11px; font-weight: 400; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.2em; color: #444444;">Ministry Background</h3>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2023-Present</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">Open Door Presbyterian Church, Herndon, VA  <span style="color: #888888;">Keyboardist, Bassist</span></p>
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2023</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">Youth KOSTA USA Conference  <span style="color: #888888;">Keyboardist</span></p>
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2019-2021</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">Jesus Fragrance Church, Seoul  <span style="color: #888888;">Worship Leader</span></p>
+                    </div>
+                    <div style="margin-bottom: 40px;">
+                        <span style="font-size: 14px; color: #888888;">2018-2021</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">Somang Church, Seoul  <span style="color: #888888;">Trombonist</span></p>
+                    </div>
+                    
+                    <h3 style="font-size: 11px; font-weight: 400; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.2em; color: #444444;">Awards</h3>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2023</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">Global K-Gospel Competition, CTS TV  <span style="color: #888888;">1st place</span></p>
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2023</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">Imagine Muzik Songwriting Competition, CJ E&M  <span style="color: #888888;">3rd place</span></p>
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2017</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">Daegu International Musical Festival (DIMF)  <span style="color: #888888;">Excellence Prize, Musical 'Les Misérables'</span></p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 60px; padding-top: 40px; border-top: 1px solid #1a1a1a; max-width: 720px;">
+                    <div class="section-title">KOR</div>
+                    <h3 style="font-size: 11px; font-weight: 400; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.2em; color: #444444; margin-top: 40px;">학력</h3>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2024-2025</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">Berklee College of Music, NYC  <span style="color: #888888;">작곡 및 프로덕션 석사</span></p>
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2018-2019</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">서울재즈아카데미  <span style="color: #888888;">실용음악 학사, 재즈 피아노 전공</span></p>
+                    </div>
+                    <div style="margin-bottom: 40px;">
+                        <span style="font-size: 14px; color: #888888;">2014-2018</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">서울예술대학교  <span style="color: #888888;">실용음악 전문학사, 재즈 트롬본 전공</span></p>
+                    </div>
+                    
+                    <h3 style="font-size: 11px; font-weight: 400; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.2em; color: #444444;">경력</h3>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2026-현재</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">Clef Company  <span style="color: #888888;">음악 프로듀서, 작곡가</span></p>
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2025-현재</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">KSS Music  <span style="color: #888888;">음악 프로듀서, 작곡가</span></p>
+                    </div>
+                    <div style="margin-bottom: 40px;">
+                        <span style="font-size: 14px; color: #888888;">2017-현재</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">프리랜서  <span style="color: #888888;">40개 이상의 K-pop 앨범 및 상업 음악 프로듀싱</span></p>
+                    </div>
+                    
+                    <h3 style="font-size: 11px; font-weight: 400; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.2em; color: #444444;">강의 경력</h3>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2024-2025</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">세종음악원, 서울  <span style="color: #888888;">음악 프로덕션 강사</span></p>
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2024-2025</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">맨해튼한국학교, 뉴욕  <span style="color: #888888;">음악 강사</span></p>
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2023-현재</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">ODPC Band Academy, 버지니아  <span style="color: #888888;">키보드 강사</span></p>
+                    </div>
+                    <div style="margin-bottom: 40px;">
+                        <span style="font-size: 14px; color: #888888;">2022-현재</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">Washington Institute of Music and Arts, 버지니아  <span style="color: #888888;">키보드, 베이스 강사</span></p>
+                    </div>
+                    
+                    <h3 style="font-size: 11px; font-weight: 400; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.2em; color: #444444;">사역 경력</h3>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2023-현재</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">열린문장로교회, 버지니아  <span style="color: #888888;">키보디스트, 베이시스트</span></p>
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2023</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">Youth KOSTA USA Conference  <span style="color: #888888;">키보디스트</span></p>
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2019-2021</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">예수향기교회, 서울  <span style="color: #888888;">예배 인도자</span></p>
+                    </div>
+                    <div style="margin-bottom: 40px;">
+                        <span style="font-size: 14px; color: #888888;">2018-2021</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">소망교회, 서울  <span style="color: #888888;">트럼보니스트</span></p>
+                    </div>
+                    
+                    <h3 style="font-size: 11px; font-weight: 400; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 0.2em; color: #444444;">수상 경력</h3>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2023</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">Global K-Gospel Competition, CTS TV  <span style="color: #888888;">1위</span></p>
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2023</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">Imagine Muzik Songwriting Competition, CJ E&M  <span style="color: #888888;">3위</span></p>
+                    </div>
+                    <div style="margin-bottom: 16px;">
+                        <span style="font-size: 14px; color: #888888;">2017</span>
+                        <p style="font-size: 15px; line-height: 2; color: #888888; font-weight: 300; margin: 4px 0 0 0;">대구국제뮤지컬페스티벌 (DIMF)  <span style="color: #888888;">우수상, 뮤지컬 '레미제라블'</span></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="goToTop" class="go-to-top" onclick="scrollToTop()"></div>
+</body>
+</html>
