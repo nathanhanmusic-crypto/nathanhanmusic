@@ -787,8 +787,8 @@
 
             // 네비게이션 텍스트 변환
             const navLabels = {
-                en: ['Home', 'Work', 'Services', 'Gallery', 'CV', 'Contact'],
-                kr: ['홈', '작업', '서비스', '갤러리', 'CV', '연락처']
+                en: ['Home', 'Work', 'Performances', 'Services', 'Gallery', 'CV', 'Contact'],
+                kr: ['홈', '작업', '공연 영상', '서비스', '갤러리', 'CV', '연락처']
             };
             const navLinks = document.querySelectorAll('aside nav a');
             navLinks.forEach((link, i) => {
@@ -931,9 +931,11 @@
         <ul>
             <li><a href="#home" onclick="showSection('home'); closeMobileMenu(); return false;">Home</a></li>
             <li><a href="#work" onclick="showSection('work'); closeMobileMenu(); return false;">Work</a></li>
+            <li><a href="#performances" onclick="showSection('performances'); closeMobileMenu(); return false;">Performances</a></li>
             <li><a href="#services" onclick="showSection('services'); closeMobileMenu(); return false;">Services</a></li>
             <li><a href="#gallery" onclick="showSection('gallery'); closeMobileMenu(); return false;">Gallery</a></li>
             <li><a href="#cv" onclick="showSection('cv'); closeMobileMenu(); return false;">CV</a></li>
+            <li><a href="#contact" onclick="showSection('contact'); closeMobileMenu(); return false;">Contact</a></li>
         </ul>
     </nav>
 
@@ -944,6 +946,7 @@
                 <ul>
                     <li><a href="#home" onclick="showSection('home'); return false;">Home</a></li>
                     <li><a href="#work" onclick="showSection('work'); return false;">Work</a></li>
+                    <li><a href="#performances" onclick="showSection('performances'); return false;">Performances</a></li>
                     <li><a href="#services" onclick="showSection('services'); return false;">Services</a></li>
                     <li><a href="#gallery" onclick="showSection('gallery'); return false;">Gallery</a></li>
                     <li><a href="#cv" onclick="showSection('cv'); return false;">CV</a></li>
@@ -1114,6 +1117,74 @@
                 <div style="margin-top: 80px; max-width: 800px;">
                     <div class="section-title">All Works</div>
                     <iframe style="border-radius:2px" src="https://open.spotify.com/embed/playlist/16E8Jz3mdN03rhoy503aOj?utm_source=generator&theme=0" width="100%" height="800" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+            </section>
+
+            <section id="performances" style="margin-top: 0;">
+                <div class="section-title"><span class="lang-en">Performances</span><span class="lang-kr" style="display:none;">공연 영상</span></div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(480px, 1fr)); gap: 32px; margin-top: 8px;">
+
+                    <div>
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 2px; background: #080808;">
+                            <iframe src="https://www.youtube.com/embed/MH2V2tdHbSE" title="Performance 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 2px; background: #080808;">
+                            <iframe src="https://www.youtube.com/embed/BD6PwzlBVRc" title="Performance 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 2px; background: #080808;">
+                            <iframe src="https://www.youtube.com/embed/uYGPhTm55js" title="Performance 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 2px; background: #080808;">
+                            <iframe src="https://www.youtube.com/embed/Uad2C_F0OUc" title="Performance 4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 2px; background: #080808;">
+                            <iframe src="https://www.youtube.com/embed/5OnvQc-TL3k" title="Performance 5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 2px; background: #080808;">
+                            <iframe src="https://www.youtube.com/embed/xzj4sUu62mI" title="Performance 6" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 2px; background: #080808;">
+                            <iframe src="https://www.youtube.com/embed/hwoPVrgXcAA" title="Performance 7" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 2px; background: #080808;">
+                            <iframe src="https://www.youtube.com/embed/oEHOvVE_sf0" title="Performance 8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 2px; background: #080808;">
+                            <iframe src="https://www.youtube.com/embed/IU2KJw9Pajw" title="Performance 9" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 2px; background: #080808;">
+                            <iframe src="https://www.youtube.com/embed/J_dE6TuXK44" title="Performance 10" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
